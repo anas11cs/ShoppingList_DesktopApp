@@ -15,6 +15,10 @@ app.on('ready', function(){
         protocol:'file:',
         slashes: true
     }));
+    // Quitting Complete App
+    mainWindow.on('closed', function(){
+        app.quit()
+    })
     // Build Menu from Template below
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     //Insert Menu
@@ -26,8 +30,8 @@ function createAddWindow()
 {
         // Create Add Window
         addWindow = new BrowserWindow({
-            width:200,
-            height:300,
+            width:300,
+            height:200,
             title:'Add Shopping List Item'
         });
         // Load html into Window
@@ -36,6 +40,10 @@ function createAddWindow()
             protocol:'file:',
             slashes: true
         }));
+        // Garbage Collection
+        addWindow.on('closed',function(){
+            addWindow=null;
+        });
 }
 
 // ============================ TOP MENU BELOW =======================

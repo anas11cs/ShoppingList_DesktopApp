@@ -16,12 +16,50 @@ app.on('ready', function(){
         slashes: true
     }));
     // Build Menu from Template below
-    const mainMenu = Menu.buildFromTemplate.apply(mainMenuTemplate);
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+    //Insert Menu
     Menu.setApplicationMenu(mainMenu);
 });
 
+// Creating Add Window
+function createAddWindow()
+{
+        // Create Add Window
+        addWindow = new BrowserWindow({
+            width:200,
+            height:300,
+            title:'Add Shopping List Item'
+        });
+        // Load html into Window
+        addWindow.loadURL(url.format({
+            pathname: path.join(__dirname, 'addWindow.html'),
+            protocol:'file:',
+            slashes: true
+        }));
+}
+
+// ============================ TOP MENU BELOW =======================
+// Creating Menu Template
 const mainMenuTemplate = [
     {
-        label:'File'
+        label:'File',
+        submenu:[
+            {
+                label:'Add Item',
+                click(){
+                    createAddWindow();
+                }
+            },
+            {
+                label:'Clear Items'
+            },
+            {
+                label:'Quit',
+                accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctr',
+                click(){
+                    app.quit();
+                }
+            }
+        ]
     }
-]
+];

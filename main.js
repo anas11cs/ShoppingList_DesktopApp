@@ -63,7 +63,7 @@ const mainMenuTemplate = [
             },
             {
                 label:'Quit',
-                accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctr',
+                accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
                 click(){
                     app.quit();
                 }
@@ -71,3 +71,25 @@ const mainMenuTemplate = [
         ]
     }
 ];
+// Mac Config. for Menu Items
+if(process.platform == 'darwin'){
+    mainMenuTemplate.unshift({}); // unshift is array method that adds an empty object {} in the start of Array(mainMenuTemplate)
+}
+// Developer Tools for Development ENABLED
+if(process.env.NODE_ENV !== 'production'){
+    mainMenuTemplate.push({
+        label:'Developer Tools',
+        submenu:[
+            {
+                label: 'Toggle Developer Tools',
+                accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
+                click(item, focusedWindow){
+                    focusedWindow.toggleDevTools();
+                }
+            },
+            {
+                role: 'reload'
+            }
+        ]
+    })
+}

@@ -12,5 +12,16 @@
         </div>
         <button type="submit">Add Item</button>
     </form>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form=document.querySelector('form');
+        form.addEventListener('submit',addItemForm)
+        function addItemForm(e){
+            e.preventDefault();
+            console.log("Test-addItemForm:addWindow.html")
+        }
+    </script>
 </body>
 </html>

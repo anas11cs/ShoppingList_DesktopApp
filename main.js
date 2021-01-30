@@ -1,14 +1,17 @@
-const electron = require('electron')
+const electron = require('electron');
+const { DownloadItem } = require('electron/main');
 const path = require('path')
 const url = require('url')
 
-const {app, BrowserWindow, Menu} = electron;
+const {app, BrowserWindow, Menu, ipcMain} = electron;
 let mainWindow;
 
 // Listen for app to be ready
 app.on('ready', function(){
     // Create Main Window
-    mainWindow = new BrowserWindow({});
+    mainWindow = new BrowserWindow({
+        webPreferences:{nodeIntegration:true} // Added as embedding node in html is by default false
+    });
     // Load html into Window
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'mainWindow.html'),
@@ -32,7 +35,8 @@ function createAddWindow()
         addWindow = new BrowserWindow({
             width:300,
             height:200,
-            title:'Add Shopping List Item'
+            title:'Add Shopping List Item',
+            webPreferences:{nodeIntegration:true} // Added as embedding node in html is by default false
         });
         // Load html into Window
         addWindow.loadURL(url.format({
@@ -45,6 +49,13 @@ function createAddWindow()
             addWindow=null;
         });
 }
+
+// [ item:add ] from addWindow.html being caught here
+ipcMain.on('item:add', function(e,item){
+    console.log(item)
+    mainWindow.webContents.send('item:add', item);
+    addWindow.close();
+});
 
 // ============================ TOP MENU BELOW =======================
 // Creating Menu Template

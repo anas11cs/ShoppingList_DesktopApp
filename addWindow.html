@@ -19,8 +19,9 @@
         const form=document.querySelector('form');
         form.addEventListener('submit',addItemForm)
         function addItemForm(e){
-            e.preventDefault();
-            console.log("Test-addItemForm:addWindow.html")
+        e.preventDefault();
+            const item = document.querySelector('#item').value; // Remember: #item means id="item"
+            ipcRenderer.send('item:add', item);
         }
     </script>
 </body>

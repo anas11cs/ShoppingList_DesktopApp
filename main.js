@@ -52,7 +52,7 @@ function createAddWindow()
 
 // [ item:add ] from addWindow.html being caught here
 ipcMain.on('item:add', function(e,item){
-    console.log(item)
+    //console.log(item)
     mainWindow.webContents.send('item:add', item);
     addWindow.close();
 });

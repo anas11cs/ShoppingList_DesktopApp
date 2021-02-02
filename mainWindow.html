@@ -16,7 +16,11 @@
             const itemText = document.createTextNode(item);
             li.appendChild(itemText);
             ul.appendChild(li);
-        })
+        });
+
+        ipcRenderer.on('item:clear', function(){
+            ul.innerHTML = '';
+        });
     </script>
 </body>
 </html>

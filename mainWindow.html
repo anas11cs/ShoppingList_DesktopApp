@@ -11,27 +11,35 @@
             <a class="brand-logo center">ShoppingList</a>
         </div>
     </nav>
-    <ul></ul>
+    <ul class="collection">
+        <!-- li being rendered in it, dynamically with class of it as 'collection-item'-->
+    </ul>
     <script>
         const electron = require('electron');
         const {ipcRenderer} = electron;
         const ul = document.querySelector('ul');
         // Add Item
         ipcRenderer.on('item:add', function(e, item){
+            ul.className='collection';
             const li = document.createElement('li');
             const itemText = document.createTextNode(item);
+            li.className = 'collection-item';
             li.appendChild(itemText);
             ul.appendChild(li);
         });
         // Clear Item
         ipcRenderer.on('item:clear', function(){
             ul.innerHTML = '';
+            ul.className = '';
         });
         // Remove item on Double Click
         ul.addEventListener('dblclick',removeItem );
 
         function removeItem(e){
             e.target.remove();
+            if(ul.children.length == 0){
+                ul.className = '';
+            }
         }
     </script>
 </body>

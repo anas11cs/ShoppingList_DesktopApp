@@ -4,6 +4,7 @@
     <title>Shopping List</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -16,12 +17,17 @@
             <!-- Make the UI different by colour scheme change, font change-->
         </div>
     </nav>
-    <ul class="collection">
+    <br>
+    
+    <a onclick="loadAddWindow()" class="waves-effect waves-light btn-floating red" data-position="bottom" data-tooltip="I am a tooltip"><i class="material-icons">add</i></a>
+    <ul >
         <!-- li being rendered in it, dynamically with class of it as 'collection-item'-->
     </ul>
+    
     <script>
         const electron = require('electron');
         const {ipcRenderer} = electron;
+        //const main = require('./main.js')
         const ul = document.querySelector('ul');
         // Add Item
         ipcRenderer.on('item:add', function(e, item){
@@ -45,6 +51,9 @@
             if(ul.children.length == 0){
                 ul.className = '';
             }
+        }
+        function loadAddWindow(){
+            console.log('hi');
         }
     </script>
 </body>

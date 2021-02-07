@@ -1,5 +1,6 @@
+const { create } = require('domain');
 const electron = require('electron');
-const { DownloadItem } = require('electron/main');
+//const { DownloadItem } = require('electron/main');
 const path = require('path')
 const url = require('url')
 
@@ -10,6 +11,8 @@ let mainWindow;
 app.on('ready', function(){
     // Create Main Window
     mainWindow = new BrowserWindow({
+        width:400,
+        height:900,
         webPreferences:{nodeIntegration:true} // Added as embedding node in html is by default false
     });
     // Load html into Window

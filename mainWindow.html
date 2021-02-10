@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<style>
+    #LossNotion:hover{
+        background-color: rgb(255, 0, 0);
+     }
+     #RefreshNotion:hover{
+        background-color: rgb(172, 255, 77);
+     }
+</style>
 <body>
+    
     <nav>
         <div class="nav-wrapper amber lighten-1">
             <a class="brand-logo center black-text" style="font-style:italic; font-family:Segoe UI">Shoplify</a>
@@ -16,18 +25,25 @@
             <!-- Introduce RED cross button to remove item parallel to item-->
             <!-- Add Button to clear all items at left/right of add button-->
             <!-- Add Refresh Button at left/right of add button-->
-            <!-- Make the UI different by colour scheme change, font change-->
+            <!--[[[[[]]]]]-->
             <!-- Make logo stylish -->
             <!-- change logo background-->
+            <!-- Make the UI different by colour scheme change, font change-->
         </div>
     </nav>
     <ul >
         <!-- li being rendered in it, dynamically with class of it as 'collection-item'-->
     </ul>
-    <div class="fixed-action-btn" style="margin: auto; width: 50%;">
-        <a onclick="loadAddWindow()" class="waves-effect waves-light btn-floating btn-large amber lighten-1">
-          <i class="large material-icons black-text">add</i>
+    
+    <div class="fixed-action-btn" style="margin: auto; width: 78%; position:absolute;">
+        <span class="helper-text">Refresh List</span>
+        <a onclick="loadAddWindow()" class="waves-effect waves-light btn-floating btn-small amber lighten-1">
+            <i id="RefreshNotion" class="large material-icons black-text">refresh</i>
         </a>
+        <a onclick="loadAddWindow()" class="waves-effect waves-light btn-floating btn-large amber lighten-1">
+            <i class="large material-icons black-text">add</i>
+        </a>
+
     </div>
     <script>
         

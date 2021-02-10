@@ -6,6 +6,13 @@ const url = require('url')
 
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 let mainWindow;
+let isDev=false;
+if (
+	process.env.NODE_ENV !== undefined &&
+	process.env.NODE_ENV === 'development'
+) {
+	isDev = true
+}
 
 // Listen for app to be ready
 app.on('ready', function(){
@@ -13,6 +20,7 @@ app.on('ready', function(){
     mainWindow = new BrowserWindow({
         width:400,
         height:900,
+        resizable: isDev?false:true,
         webPreferences:{nodeIntegration:true} // Added as embedding node in html is by default false
     });
     // Load html into Window
